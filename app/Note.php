@@ -17,14 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Note extends Model
 {
-    protected $fillable  = [
-        'booking_id',
-        'note',
-        'private',
-    ];
-
     public function bookingData()
     {
-        return $this->belongsTo('\App\BookingData');
+        return $this->belongsTo('\App\BookingData', 'booking_id');
     }
 }

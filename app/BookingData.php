@@ -22,22 +22,14 @@ use Illuminate\Database\Eloquent\Model;
 class BookingData extends Model
 {
     protected $table = 'booking_data';
-    protected $fillable  = [
-        'pharmacy_id',
-        'role',
-        'booking_fee',
-        'rate',
-        'finish',
-        'public',
-    ];
 
     public function pharmacy()
     {
         return $this->belongsTo('\App\Pharmacy');
     }
 
-    public function notes()
+    public function note()
     {
-        return $this->hasMany('\App\Note');
+        return $this->hasOne('\App\Note', 'booking_id');
     }
 }
