@@ -108,7 +108,7 @@ class BootsImportController extends Controller
             $importedSheet->getActiveSheet()->fromArray($imported);
 
             $objectWriter = IOFactory::createWriter($importedSheet,'Xlsx');
-            $pathImported = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix().'/import.xlsx';
+            $pathImported = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix().'/uploads/import.xlsx';
             $objectWriter->save($pathImported);
 
 
@@ -124,6 +124,7 @@ class BootsImportController extends Controller
             Mail::to('rodrigoalex.puc@gmail.com')->send(new SendMailable($content, 'boots', $files, 'PHP Developer'));
 
             Storage::delete($file);
+            Storage::delete($pathImported);
 
             return response('Data imported and email sent',200);
         }
